@@ -14,7 +14,21 @@ app.engine('.hbs', hbs({
 }))
 app.set('view engine', '.hbs');
 
+
 app.use('/api', api);
+
+app.get('/', (req, res) => {
+    res.status(200).send({
+        message: 'Bienvenidos ',
+        api: [{
+            add: "/api/product",
+            update: "/api/product/:id",
+            delete: "/api/product/:id",
+            get: "/api/product",
+            login: "/login"
+        }]
+    })
+});
 
 app.get('/login', (req, res) => {
     res.render('login')
