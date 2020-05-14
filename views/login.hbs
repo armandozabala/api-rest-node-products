@@ -1,0 +1,27 @@
+<form id="formElem" method="post">
+
+     <input type="email" name="email" value="armandozabala@gmail.com" placeholder="Tu email"><br><br>
+     <input type="password" name="password" value="armando22" placeholder="Tu Password"><br><br>
+     <br>
+    <input type="submit" value="Login">
+
+
+</form>
+
+<script type="text/javascript">
+
+  formElem.onsubmit = async (e) => {
+    e.preventDefault();
+
+    let response = await fetch('/api/signin', {
+      method: 'POST',
+      body: new FormData(formElem)
+    });
+
+    let result = await response.json();
+
+    localStorage.setItem('token',result.token);
+    console.log(result.message);
+  };
+  
+</script>
